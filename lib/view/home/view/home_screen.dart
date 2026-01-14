@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:movie_nest/core/app_colors.dart';
-import 'package:movie_nest/widget/banner.dart';
-import 'package:movie_nest/widget/movie_card.dart';
-import 'package:movie_nest/widget/moviel_ist.dart';
-import 'package:movie_nest/widget/see_all.dart';
-import 'package:movie_nest/widget/top_movie.dart';
+import 'package:movie_nest/view/home/widget/banner.dart';
+import 'package:movie_nest/view/home/widget/movie_card.dart';
+import 'package:movie_nest/view/home/widget/movie_list.dart';
+import 'package:movie_nest/view/home/widget/see_all.dart';
+import 'package:movie_nest/view/home/widget/top_movie.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

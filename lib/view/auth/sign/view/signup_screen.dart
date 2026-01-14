@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movie_nest/core/app_colors.dart';
-import 'package:movie_nest/view/home_screen.dart';
-import 'package:movie_nest/widget/textfield.dart';
+import 'package:movie_nest/view/home/view/home_screen.dart';
+import 'package:movie_nest/view/auth/widget/textfield.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SignUpScreen extends StatefulWidget {
