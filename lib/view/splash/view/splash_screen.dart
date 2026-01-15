@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:loading_animation_widget/loading_animation_widget.dart';
 import 'package:movie_nest/core/app_colors.dart';
 import 'package:movie_nest/view/auth/sign/view/signup_screen.dart';
+import 'package:movie_nest/view/home/widget/main_page.dart';
 
 
 class SplashScreen extends StatefulWidget {
@@ -22,7 +23,7 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(Duration(seconds: 3));
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => SignUpScreen()),
+      MaterialPageRoute(builder: (context) => MainPage()),
     );
   }
   Widget build(BuildContext context) {

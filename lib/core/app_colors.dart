@@ -11,5 +11,5 @@ class AppColors {
   static const Color txtClr5 = Colors.amber;
   static const Color black = Color(0xFF000000);
   static const Color transparent = Color(0x00000000);
-  static const Color txtfld = Color(0xFF1E1E2A);
+  static const Color txtfld = Color(0xFF1C1C1C);
 }

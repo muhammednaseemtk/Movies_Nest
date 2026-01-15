@@ -5,6 +5,7 @@ import 'package:movie_nest/view/home/widget/movie_card.dart';
 import 'package:movie_nest/view/home/widget/movie_list.dart';
 import 'package:movie_nest/view/home/widget/see_all.dart';
 import 'package:movie_nest/view/home/widget/top_movie.dart';
+import 'package:movie_nest/view/search/view/search_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -23,7 +24,9 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomTopMovie(),
+              CustomTopMovie(onSearchTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => SearchScreen()));
+              },),
               CustomBanner(imagePath: 'asset/image/anime.jpg', category: 'Adventure', title: 'Jujutsu Kaisen'),
                SizedBox(height: 25),
                CustomSeeAll(title: 'Trending Movies'),
@@ -34,7 +37,11 @@ class _HomeScreenState extends State<HomeScreen> {
                SizedBox(height: 10,),
                CustomMovieList(imagePath: 'asset/image/it.jpg'),
                SizedBox(height: 10,),
-               CustomMovieCard(imagePath: 'asset/image/anime.jpg', title: 'Jujutsu Kaisen', rating: 8.9, year: '2000', txt: 'Adventure',)
+               CustomSeeAll(title: 'Top Rated'),
+               CustomMovieCard(imagePath: 'asset/image/anime.jpg', title: 'Jujutsu Kaisen', rating: 8.9, year: '2000', txt: 'Adventure',),
+               CustomMovieCard(imagePath: 'asset/image/anime.jpg', title: 'Jujutsu Kaisen', rating: 8.9, year: '2000', txt: 'Adventure',),
+               CustomMovieCard(imagePath: 'asset/image/anime.jpg', title: 'Jujutsu Kaisen', rating: 8.9, year: '2000', txt: 'Adventure',),
+               CustomMovieCard(imagePath: 'asset/image/anime.jpg', title: 'Jujutsu Kaisen', rating: 8.9, year: '2000', txt: 'Adventure',),
             ],
           ),
         ),

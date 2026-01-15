@@ -1,3 +1,4 @@
+import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_nest/core/app_colors.dart';
 
@@ -19,7 +20,7 @@ class CustomTopMovie extends StatelessWidget {
           Row(
             children: [
               Icon(
-                Icons.play_circle_fill,
+                EneftyIcons.play_bold,
                 color: AppColors.txtClr2,
                 size: 28,
               ),
@@ -36,7 +37,7 @@ class CustomTopMovie extends StatelessWidget {
           ),
           IconButton(
             onPressed: onSearchTap,
-            icon: Icon(Icons.search, color: AppColors.txtClr),
+            icon: Icon(EneftyIcons.search_normal_outline, color: AppColors.txtClr),
           ),
         ],
       ),

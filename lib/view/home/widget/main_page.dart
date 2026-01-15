@@ -1,6 +1,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:movie_nest/view/home/view/home_screen.dart';
+import 'package:movie_nest/view/search/view/search_screen.dart';
+import 'package:movie_nest/view/watch%20list/view/watch_list_screen.dart';
 import './bottom_nav_bar.dart';
 
 class MainPage extends StatefulWidget {
@@ -14,7 +16,9 @@ class _MainPageState extends State<MainPage> {
   int currentIndex = 0;
 
   final List<Widget> pages = const [
-    HomeScreen()
+    HomeScreen(),
+    SearchScreen(),
+    WatchListScreen()
   ];
 
   void _onNavTap(int index) {

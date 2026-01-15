@@ -16,11 +16,6 @@ class CustomProfileAvatar extends StatelessWidget {
     return Column(
       children: [
         Container(
-          padding: const EdgeInsets.all(3),
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: Colors.redAccent.withOpacity(0.6),
-          ),
           child: Container(
             padding: const EdgeInsets.all(3),
             decoration:  BoxDecoration(
@@ -37,7 +32,7 @@ class CustomProfileAvatar extends StatelessWidget {
         Text(
           name,
           style:  TextStyle(
-            color: Colors.white,
+            color: AppColors.txtClr,
             fontSize: 13,
             fontWeight: FontWeight.w500,
           ),

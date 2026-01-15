@@ -1,3 +1,4 @@
+import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_nest/core/app_colors.dart';
 
@@ -23,10 +24,7 @@ class CustomBanner extends StatelessWidget {
       height: 230,
       width: double.infinity,
       decoration: BoxDecoration(
-        image: DecorationImage(
-          image: AssetImage(imagePath),
-          fit: BoxFit.cover,
-        ),
+        image: DecorationImage(image: AssetImage(imagePath), fit: BoxFit.cover),
       ),
       child: Container(
         padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
@@ -34,10 +32,7 @@ class CustomBanner extends StatelessWidget {
           gradient: LinearGradient(
             begin: Alignment.bottomCenter,
             end: Alignment.topCenter,
-            colors: [
-              AppColors.black,
-              AppColors.transparent
-            ],
+            colors: [AppColors.black, AppColors.transparent],
           ),
         ),
         child: Column(
@@ -45,26 +40,19 @@ class CustomBanner extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             Container(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(
                 color: AppColors.btnClr,
                 borderRadius: BorderRadius.circular(6),
               ),
               child: Text(
                 'ORIGINAL',
-                style: TextStyle(
-                  color: AppColors.txtClr,
-                  fontSize: 10,
-                ),
+                style: TextStyle(color: AppColors.txtClr, fontSize: 10),
               ),
             ),
-             SizedBox(height: 6),
-            Text(
-              category,
-              style: TextStyle(color: AppColors.txtClr3),
-            ),
-             SizedBox(height: 6),
+            SizedBox(height: 6),
+            Text(category, style: TextStyle(color: AppColors.txtClr3)),
+            SizedBox(height: 6),
             Text(
               title,
               style: TextStyle(
@@ -73,7 +61,7 @@ class CustomBanner extends StatelessWidget {
                 fontWeight: FontWeight.bold,
               ),
             ),
-             SizedBox(height: 12),
+            SizedBox(height: 12),
             Row(
               children: [
                 ElevatedButton.icon(
@@ -84,25 +72,14 @@ class CustomBanner extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  icon: Icon(Icons.play_arrow,
-                      color: AppColors.txtClr),
+                  icon: Icon(EneftyIcons.play_outline, color: AppColors.txtClr),
                   label: Text(
                     'Play',
                     style: TextStyle(color: AppColors.txtClr),
                   ),
                 ),
-                 SizedBox(width: 10),
-                Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.txtClr4,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: IconButton(
-                    onPressed: onAddTap,
-                    icon: Icon(Icons.add,
-                        color: AppColors.txtClr),
-                  ),
-                ),
+                SizedBox(width: 10),
+                Icon(EneftyIcons.add_square_outline,color: AppColors.txtClr,)
               ],
             ),
           ],

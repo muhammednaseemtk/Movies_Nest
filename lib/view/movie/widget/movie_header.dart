@@ -41,35 +41,45 @@ class CustomMovieHeader extends StatelessWidget {
         Positioned(
           top: 50,
           left: 16,
-          child: _icon(Icons.arrow_back, onBack),
+          child: GestureDetector(
+            onTap: onBack,
+            child: CircleAvatar(
+              backgroundColor: AppColors.black,
+              radius: 20,
+              child: Icon(Icons.arrow_back, color: AppColors.txtClr),
+            ),
+          ),
         ),
         Positioned(
           top: 50,
           right: 70,
-          child: _icon(Icons.share, onShare),
+          child: GestureDetector(
+            onTap: onShare,
+            child: CircleAvatar(
+              backgroundColor: AppColors.black,
+              radius: 20,
+              child: Icon(Icons.share, color: AppColors.txtClr),
+            ),
+          ),
         ),
         Positioned(
           top: 50,
           right: 16,
-          child: _icon(
-            isFavourite ? Icons.favorite : Icons.favorite_border,
-            onFavourite,
+          child: GestureDetector(
+            onTap: onFavourite,
+            child: CircleAvatar(
+              backgroundColor: AppColors.black,
+              radius: 20,
+              child: Icon(
+                isFavourite
+                    ? Icons.favorite
+                    : Icons.favorite_border,
+                color: AppColors.txtClr,
+              ),
+            ),
           ),
         ),
       ],
-    );
-  }
-  Widget _icon(IconData icon, VoidCallback onTap) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        decoration: BoxDecoration(
-          color: AppColors.black,
-          shape: BoxShape.circle,
-        ),
-        child: Icon(icon, color: AppColors.txtClr),
-      ),
     );
   }
 }
