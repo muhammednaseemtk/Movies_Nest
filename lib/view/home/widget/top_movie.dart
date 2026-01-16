@@ -3,11 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:movie_nest/core/app_colors.dart';
 
 class CustomTopMovie extends StatelessWidget {
-  final VoidCallback? onSearchTap;
 
   const CustomTopMovie({
     super.key,
-    this.onSearchTap,
   });
 
   @override
@@ -34,10 +32,6 @@ class CustomTopMovie extends StatelessWidget {
                 ),
               ),
             ],
-          ),
-          IconButton(
-            onPressed: onSearchTap,
-            icon: Icon(EneftyIcons.search_normal_outline, color: AppColors.txtClr),
           ),
         ],
       ),

@@ -2,7 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:movie_nest/core/app_colors.dart';
 
 class CustomMovieButtons extends StatelessWidget {
-  const CustomMovieButtons({super.key});
+  final VoidCallback? onPlayTrailer;
+  final VoidCallback? onAddToWatchlist;
+  final bool isInWatchlist;
+
+  const CustomMovieButtons({
+    super.key,
+    this.onPlayTrailer,
+    this.onAddToWatchlist,
+    this.isInWatchlist = false,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,9 +24,13 @@ class CustomMovieButtons extends StatelessWidget {
             width: double.infinity,
             height: 55,
             child: ElevatedButton.icon(
-              onPressed: () {},
-              icon:  Icon(Icons.play_arrow, color: AppColors.txtClr, size: 28),
-              label:  Text(
+              onPressed: onPlayTrailer,
+              icon: Icon(
+                Icons.play_arrow,
+                color: AppColors.txtClr,
+                size: 28,
+              ),
+              label: Text(
                 "PLAY TRAILER",
                 style: TextStyle(
                   color: AppColors.txtClr,
@@ -35,15 +48,23 @@ class CustomMovieButtons extends StatelessWidget {
               ),
             ),
           ),
-           SizedBox(height: 12), 
+           SizedBox(height: 12),
           SizedBox(
             width: double.infinity,
             height: 55,
             child: OutlinedButton.icon(
-              onPressed: () {},
-              icon:  Icon(Icons.bookmark_add, color: AppColors.txtClr, size: 24),
-              label:  Text(
-                "ADD TO WATCHLIST",
+              onPressed: onAddToWatchlist,
+              icon: Icon(
+                isInWatchlist
+                    ? Icons.bookmark
+                    : Icons.bookmark_add,
+                color: AppColors.txtClr,
+                size: 24,
+              ),
+              label: Text(
+                isInWatchlist
+                    ? "ADDED TO WATCHLIST"
+                    : "ADD TO WATCHLIST",
                 style: TextStyle(
                   color: AppColors.txtClr,
                   fontWeight: FontWeight.bold,
@@ -52,8 +73,8 @@ class CustomMovieButtons extends StatelessWidget {
                 ),
               ),
               style: OutlinedButton.styleFrom(
-                backgroundColor: AppColors.txtClr4, 
-                side: const BorderSide(color: AppColors.txtClr),
+                backgroundColor: AppColors.txtClr4,
+                side:  BorderSide(color: AppColors.txtClr),
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),

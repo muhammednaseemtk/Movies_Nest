@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:movie_nest/core/app_colors.dart';
+import 'package:movie_nest/view/home/widget/see_all.dart';
+import 'package:movie_nest/view/movie/controller/movie_controller.dart';
 import 'package:movie_nest/view/movie/widget/movie_button.dart';
 import 'package:movie_nest/view/movie/widget/movie_header.dart';
 import 'package:movie_nest/view/movie/widget/movie_overview.dart';
 import 'package:movie_nest/view/movie/widget/movie_title.dart';
 import 'package:movie_nest/view/movie/widget/profile_avatar.dart';
-import 'package:movie_nest/view/home/widget/see_all.dart';
+import 'package:provider/provider.dart';
 
 class MovieScreen extends StatefulWidget {
   const MovieScreen({super.key});
@@ -15,68 +17,71 @@ class MovieScreen extends StatefulWidget {
 }
 
 class _MovieScreenState extends State<MovieScreen> {
-  bool isFavourite = false;
+  @override
+  void initState() {
+    super.initState();
+    Future.microtask(() {
+      context.read<MovieController>().fetchMovies();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            CustomMovieHeader(
-              isFavourite: isFavourite,
-              onBack: () {},
-              onShare: () {},
-              onFavourite: () {
-                setState(() {
-                  isFavourite = !isFavourite;
-                });
-              },
+      body: Consumer<MovieController>(
+        builder: (context, movieProvider, child) {
+          if (movieProvider.isLoading) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          if (movieProvider.movies.isEmpty) {
+            return const Center(child: Text('No data'));
+          }
+
+          final movie = movieProvider.movies.first;
+
+          return SingleChildScrollView(
+            child: Column(
+              children: [
+                CustomMovieHeader(
+                  isFavourite: movieProvider.isFavourite,
+                  imagePath: movie.posterPath,
+                  onBack: () => Navigator.pop(context),
+                  onShare: () {},
+                  onFavourite: movieProvider.toggleFavourite,
+                ),
+
+                SizedBox(height: 16),
+
+                CustomMovieTitle(
+                  title: movie.originalTitle,
+                  rating: movie.voteAverage?.toStringAsFixed(1),
+                  year: movie.releaseDate?.substring(0, 4),
+                  duration: '2h 34m',
+                  quality: '4K HDR',
+                ),
+
+                SizedBox(height: 20),
+
+                CustomMovieButtons(
+                  onPlayTrailer: () {},
+                  onAddToWatchlist: movieProvider.toggleFavourite,
+                  isInWatchlist: movieProvider.isFavourite,
+                ),
+
+                SizedBox(height: 10),
+
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: CustomMovieOverview(description: movie.overview),
+                ),
+
+                SizedBox(height: 10),
+              ],
             ),
-            SizedBox(height: 16),
-            CustomMovieTitle(),
-            SizedBox(height: 20),
-            CustomMovieButtons(),
-            SizedBox(height: 10),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: CustomMovieOverview(
-                description:
-                    'It: Welcome to Derry is an American supernatural horror television series based on Stephen King 1986 novel It. Serving as a prequel to the films It and It Chapter Two, the series was developed by Andy Muschietti, Barbara Muschietti and Jason Fuchs, all of whom were involved in the It films.',
-              ),
-            ),
-            SizedBox(height: 10,),
-            CustomSeeAll(title: 'TOP CAST'),
-            SizedBox(height: 15,),
-            SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
-                children: [
-                  CustomProfileAvatar(imagePath: 'asset/image/pp.jpg', name: 'naseem'),
-                  SizedBox(width: 10,),
-                  CustomProfileAvatar(imagePath: 'asset/image/pp.jpg', name: 'naseem'),
-                   SizedBox(width: 10,),
-                  CustomProfileAvatar(imagePath: 'asset/image/pp.jpg', name: 'naseem'),
-                   SizedBox(width: 10,),
-                  CustomProfileAvatar(imagePath: 'asset/image/pp.jpg', name: 'naseem'),
-                   SizedBox(width: 10,),
-                  CustomProfileAvatar(imagePath: 'asset/image/pp.jpg', name: 'naseem'),
-                   SizedBox(width: 10,),
-                  CustomProfileAvatar(imagePath: 'asset/image/pp.jpg', name: 'naseem'),
-                   SizedBox(width: 10,),
-                  CustomProfileAvatar(imagePath: 'asset/image/pp.jpg', name: 'naseem'),
-                   SizedBox(width: 10,),
-                  CustomProfileAvatar(imagePath: 'asset/image/pp.jpg', name: 'naseem'),
-                   SizedBox(width: 10,),
-                  CustomProfileAvatar(imagePath: 'asset/image/pp.jpg', name: 'naseem'),
-                   SizedBox(width: 10,),
-                  CustomProfileAvatar(imagePath: 'asset/image/pp.jpg', name: 'naseem'),
-                ],
-              ),
-            ),
-            SizedBox(height: 20,)
-          ],
-        ),
+          );
+        },
       ),
     );
   }

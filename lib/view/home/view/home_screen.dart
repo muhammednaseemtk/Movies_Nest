@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_nest/core/app_colors.dart';
+import 'package:movie_nest/view/home/controller/banner_controller.dart';
 import 'package:movie_nest/view/home/widget/banner.dart';
 import 'package:movie_nest/view/home/widget/movie_card.dart';
 import 'package:movie_nest/view/home/widget/movie_list.dart';
@@ -7,15 +8,11 @@ import 'package:movie_nest/view/home/widget/see_all.dart';
 import 'package:movie_nest/view/home/widget/top_movie.dart';
 import 'package:movie_nest/view/search/view/search_screen.dart';
 
-class HomeScreen extends StatefulWidget {
+class HomeScreen extends StatelessWidget {
   const HomeScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
-}
 
-class _HomeScreenState extends State<HomeScreen> {
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
@@ -24,9 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              CustomTopMovie(onSearchTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => SearchScreen()));
-              },),
+              CustomTopMovie(),
               CustomBanner(imagePath: 'asset/image/anime.jpg', category: 'Adventure', title: 'Jujutsu Kaisen'),
                SizedBox(height: 25),
                CustomSeeAll(title: 'Trending Movies'),

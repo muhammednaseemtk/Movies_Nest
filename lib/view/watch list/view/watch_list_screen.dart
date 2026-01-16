@@ -4,14 +4,9 @@ import 'package:movie_nest/core/app_colors.dart';
 import 'package:movie_nest/view/search/widget/filter_card.dart';
 import 'package:movie_nest/view/watch%20list/widget/watch_card.dart';
 
-class WatchListScreen extends StatefulWidget {
+class WatchListScreen extends StatelessWidget {
   const WatchListScreen({super.key});
 
-  @override
-  State<WatchListScreen> createState() => _WatchListScreenState();
-}
-
-class _WatchListScreenState extends State<WatchListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

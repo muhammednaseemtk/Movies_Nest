@@ -6,7 +6,7 @@ class CustomMovieCard extends StatelessWidget {
   final String title;
   final double rating;
   final String year;
-  final String txt; // single genre text
+  final String txt; 
   final VoidCallback? onPlayTap;
 
   const CustomMovieCard({
