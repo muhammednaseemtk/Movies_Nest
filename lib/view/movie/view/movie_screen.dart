@@ -6,7 +6,6 @@ import 'package:movie_nest/view/movie/widget/movie_button.dart';
 import 'package:movie_nest/view/movie/widget/movie_header.dart';
 import 'package:movie_nest/view/movie/widget/movie_overview.dart';
 import 'package:movie_nest/view/movie/widget/movie_title.dart';
-import 'package:movie_nest/view/movie/widget/profile_avatar.dart';
 import 'package:provider/provider.dart';
 
 class MovieScreen extends StatefulWidget {
