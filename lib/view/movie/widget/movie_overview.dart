@@ -27,7 +27,7 @@ class CustomMovieOverview extends StatelessWidget {
             fontSize: 14,
           ),
         ),
-        const SizedBox(height: 8),
+         SizedBox(height: 8),
         Text(
           overviewText,
           style: TextStyle(

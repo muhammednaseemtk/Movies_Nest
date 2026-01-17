@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_nest/view/home/controller/main_page_provider.dart';
+import 'package:movie_nest/controller/main_page_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:movie_nest/view/home/view/home_screen.dart';
 import 'package:movie_nest/view/search/view/search_screen.dart';

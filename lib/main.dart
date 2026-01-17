@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movie_nest/view/home/controller/banner_controller.dart';
-import 'package:movie_nest/view/home/controller/main_page_provider.dart';
+import 'package:movie_nest/controller/main_page_provider.dart';
 import 'package:movie_nest/view/home/widget/main_page.dart';
-import 'package:movie_nest/view/movie/controller/movie_controller.dart';
-import 'package:movie_nest/view/movie/controller/movie_image_provider.dart';
-import 'package:movie_nest/view/movie/view/movie_screen.dart';
+import 'package:movie_nest/controller/movie_controller.dart';
+import 'package:movie_nest/view/movie/view/upcoming.dart';
+import 'package:movie_nest/view/trending/view/trending_movie_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:movie_nest/view/splash/view/splash_screen.dart';
 
@@ -15,7 +14,6 @@ void main() {
         ChangeNotifierProvider(create: (_) => MainPageController()),
         ChangeNotifierProvider(create: (_) => MovieController()),
         ChangeNotifierProvider(create: (_) => MovieImageController()),
-        ChangeNotifierProvider(create: (_) => BannerController())
       ],
       child: const MyApp(),
     ),

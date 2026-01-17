@@ -1,26 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:movie_nest/core/app_colors.dart';
-import 'package:movie_nest/view/home/widget/see_all.dart';
-import 'package:movie_nest/view/movie/controller/movie_controller.dart';
+import 'package:movie_nest/core/url.dart';
+import 'package:movie_nest/model/upcoming_movie.dart';
+import 'package:movie_nest/controller/movie_controller.dart';
 import 'package:movie_nest/view/movie/widget/movie_button.dart';
 import 'package:movie_nest/view/movie/widget/movie_header.dart';
 import 'package:movie_nest/view/movie/widget/movie_overview.dart';
 import 'package:movie_nest/view/movie/widget/movie_title.dart';
 import 'package:provider/provider.dart';
 
-class MovieScreen extends StatefulWidget {
-  const MovieScreen({super.key});
+class UpcomingScreen extends StatefulWidget {
+  final UpcomingMovie data;
+  const UpcomingScreen({super.key,required this.data});
 
   @override
-  State<MovieScreen> createState() => _MovieScreenState();
+  State<UpcomingScreen> createState() => _UpcomingScreenState();
 }
 
-class _MovieScreenState extends State<MovieScreen> {
+class _UpcomingScreenState extends State<UpcomingScreen> {
   @override
   void initState() {
     super.initState();
     Future.microtask(() {
-      context.read<MovieController>().fetchMovies();
+      context.read<MovieController>().fetchUpcomingMovies();
     });
   }
 
@@ -28,24 +30,24 @@ class _MovieScreenState extends State<MovieScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      body: Consumer<MovieController>(
+      body:Consumer<MovieController>(
         builder: (context, movieProvider, child) {
           if (movieProvider.isLoading) {
-            return const Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator(color: AppColors.txtClr2,));
           }
 
-          if (movieProvider.movies.isEmpty) {
+          if (movieProvider.upcomingMovies.isEmpty) {
             return const Center(child: Text('No data'));
           }
 
-          final movie = movieProvider.movies.first;
+          final movie = movieProvider.upcomingMovies.first;
 
           return SingleChildScrollView(
             child: Column(
               children: [
                 CustomMovieHeader(
                   isFavourite: movieProvider.isFavourite,
-                  imagePath: movie.posterPath,
+                  imagePath: '${Url.imageBaseUrl}${widget.data.posterPath}',
                   onBack: () => Navigator.pop(context),
                   onShare: () {},
                   onFavourite: movieProvider.toggleFavourite,
@@ -54,10 +56,10 @@ class _MovieScreenState extends State<MovieScreen> {
                 SizedBox(height: 16),
 
                 CustomMovieTitle(
-                  title: movie.originalTitle,
-                  rating: movie.voteAverage?.toStringAsFixed(1),
+                  title: '${widget.data.originalTitle}',
+                  rating: '${widget.data.voteAverage}',
                   year: movie.releaseDate?.substring(0, 4),
-                  duration: '2h 34m',
+                  date: '${widget.data.releaseDate}',
                   quality: '4K HDR',
                 ),
 
@@ -73,7 +75,7 @@ class _MovieScreenState extends State<MovieScreen> {
 
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: CustomMovieOverview(description: movie.overview),
+                  child: CustomMovieOverview(description: '${widget.data.overview}'),
                 ),
 
                 SizedBox(height: 10),

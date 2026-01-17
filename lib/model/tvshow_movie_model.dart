@@ -1,14 +1,14 @@
-import 'package:movie_nest/model/tvshow.dart';
+import 'package:movie_nest/model/tvshow_movie.dart';
 
 class TvshowMovieModel {
   final int? page;
-  final List<Tvshow>? result;
+  final List<TvshowMovie>? results;
   final int? totalPages;
   final int? totalResults;
 
   TvshowMovieModel({
     this.page,
-    this.result,
+    this.results,
     this.totalPages,
     this.totalResults,
   });
@@ -16,8 +16,8 @@ class TvshowMovieModel {
   factory TvshowMovieModel.fromJson(Map<String, dynamic> json) {
     return TvshowMovieModel(
       page: json['page'],
-      result: (json['results'] as List<dynamic>)
-          .map((e) => Tvshow.fromJson(e))
+      results: (json['results'] as List<dynamic>)
+          .map((e) => TvshowMovie.fromJson(e))
           .toList(),
       totalPages: json['total_pages'],
       totalResults: json['total_results'],

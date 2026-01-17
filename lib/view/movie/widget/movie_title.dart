@@ -5,7 +5,7 @@ class CustomMovieTitle extends StatelessWidget {
   final String? title;
   final String? rating;
   final String? year;
-  final String? duration;
+  final String? date;
   final String? quality;
 
   const CustomMovieTitle({
@@ -13,7 +13,7 @@ class CustomMovieTitle extends StatelessWidget {
     this.title,
     this.rating,
     this.year,
-    this.duration,
+    this.date,
     this.quality,
   });
 
@@ -24,7 +24,6 @@ class CustomMovieTitle extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // 🔹 TITLE (API ready)
           Text(
             title ?? '',
             style: TextStyle(
@@ -34,39 +33,17 @@ class CustomMovieTitle extends StatelessWidget {
               height: 1.1,
             ),
           ),
-
-          const SizedBox(height: 12),
-
+          SizedBox(height: 12),
           Row(
             children: [
               Icon(Icons.star, color: AppColors.txtClr5, size: 16),
-              const SizedBox(width: 4),
-
-              // 🔹 RATING
-              Text(
-                rating ?? '',
-                style: TextStyle(color: AppColors.txtClr),
-              ),
-
-              const SizedBox(width: 8),
-
-              // 🔹 YEAR
-              Text(
-                year ?? '',
-                style: TextStyle(color: AppColors.txtClr3),
-              ),
-
-              const SizedBox(width: 8),
-
-              // 🔹 DURATION
-              Text(
-                duration ?? '',
-                style: TextStyle(color: AppColors.txtClr3),
-              ),
-
-              const SizedBox(width: 8),
-
-              // 🔹 QUALITY
+              SizedBox(width: 4),
+              Text(rating ?? '', style: TextStyle(color: AppColors.txtClr)),
+              SizedBox(width: 8),
+              Text(year ?? '', style: TextStyle(color: AppColors.txtClr3)),
+              SizedBox(width: 8),
+              Text(date ?? '', style: TextStyle(color: AppColors.txtClr3)),
+              SizedBox(width: 8),
               Container(
                 width: 60,
                 decoration: BoxDecoration(

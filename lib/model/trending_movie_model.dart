@@ -2,13 +2,13 @@ import 'package:movie_nest/model/trending_movie.dart';
 
 class TrendingMovieModel {
   final int? page;
-  final List<TrendingMovie>? result;
+  final List<TrendingMovie>? results;
   final int? totalPages;
   final int? totalResult;
 
   TrendingMovieModel({
     this.page,
-    this.result,
+    this.results,
     this.totalPages,
     this.totalResult,
   });
@@ -16,7 +16,7 @@ class TrendingMovieModel {
   factory TrendingMovieModel.fromJson(Map<String, dynamic> json) {
     return TrendingMovieModel(
       page: json['page'],
-      result: (json['results'] as List<dynamic>)
+      results: (json['results'] as List<dynamic>)
           .map((e) => TrendingMovie.fromJson(e))
           .toList(),
       totalPages: json['total_pages'],
