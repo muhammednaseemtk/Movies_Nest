@@ -1,7 +1,6 @@
 import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:movie_nest/core/app_colors.dart';
-import 'package:movie_nest/view/search/widget/filter_card.dart';
 import 'package:movie_nest/view/watch%20list/widget/watch_card.dart';
 
 class WatchListScreen extends StatelessWidget {
@@ -30,20 +29,6 @@ class WatchListScreen extends StatelessWidget {
                       ),
                     ),
                     Icon(EneftyIcons.play_cricle_bold,color: AppColors.txtClr,)
-                  ],
-                ),
-              ),
-              SizedBox(height: 10),
-              SingleChildScrollView(
-                scrollDirection: Axis.horizontal,
-                child: Row(
-                  children: [
-                    CustomFilterCard(title: 'All Movies'),
-                    CustomFilterCard(title: 'All Movies'),
-                    CustomFilterCard(title: 'All Movies'),
-                    CustomFilterCard(title: 'All Movies'),
-                    CustomFilterCard(title: 'All Movies'),
-                    CustomFilterCard(title: 'All Movies'),
                   ],
                 ),
               ),

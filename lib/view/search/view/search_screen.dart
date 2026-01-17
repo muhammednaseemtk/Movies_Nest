@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:movie_nest/core/app_colors.dart';
-import 'package:movie_nest/view/search/widget/filter_card.dart';
 import 'package:movie_nest/view/search/widget/recommended_movie.dart';
 import 'package:movie_nest/view/search/widget/search_bar.dart';
 
@@ -20,19 +19,6 @@ class SearchScreen extends StatelessWidget {
               children: [
                 CustomSearchBar(),
                 SizedBox(height: 20),
-                SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      CustomFilterCard(title: 'Trending'),
-                      CustomFilterCard(title: 'Drama'),
-                      CustomFilterCard(title: 'Action'),
-                      CustomFilterCard(title: 'Adventure'),
-                      CustomFilterCard(title: 'disnep'),
-                    ],
-                  ),
-                ),
-                SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),
                   child: Text(

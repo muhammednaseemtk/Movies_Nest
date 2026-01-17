@@ -7,6 +7,7 @@ import 'package:movie_nest/view/home/widget/movie_card.dart';
 import 'package:movie_nest/view/home/widget/see_all.dart';
 import 'package:movie_nest/view/home/widget/top_movie.dart';
 import 'package:movie_nest/view/home/widget/trending_movie_list.dart';
+import 'package:movie_nest/view/home/widget/tvshow_movie_list.dart';
 import 'package:movie_nest/view/home/widget/upcoming_movie_list.dart';
 import 'package:provider/provider.dart';
 
@@ -70,26 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(height: 20),
                   CustomSeeAll(title: 'Tv Shows'),
                   SizedBox(height: 10),
-                  Consumer<MovieController>(
-                    builder: (context, value, child) {
-                      return ListView.builder(
-                        itemCount: value.tvShowMovies.length,
-                        shrinkWrap: true,
-                        physics: NeverScrollableScrollPhysics(),
-                        itemBuilder: (context, index) {
-                          final tv = value.tvShowMovies[index];
-                          return CustomMovieCard(
-                            imagePath: '${Url.imageBaseUrl}${tv.posterPath}',
-                            title: '${tv.originalName}',
-                            rating: '${tv.voteAverage}',
-                            year: '${tv.firstAirDate}',
-                            country: 'view: ${tv.popularity}',
-                            onPlayTap: () {},
-                          );
-                        },
-                      );
-                    },
-                  ),
+                  CustomTvShowMovieList(),
                   SizedBox(height: 20),
                 ],
               ),

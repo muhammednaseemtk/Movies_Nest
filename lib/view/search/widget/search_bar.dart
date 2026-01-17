@@ -29,7 +29,6 @@ class CustomSearchBar extends StatelessWidget {
               ),
             ),
           ),
-          Icon(Icons.tune, color: AppColors.txtClr2),
         ],
       ),
     );
