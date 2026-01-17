@@ -6,9 +6,9 @@ import 'package:provider/provider.dart';
 class CustomMovieCard extends StatelessWidget {
   final String imagePath;
   final String title;
-  final double rating;
+  final String rating;
   final String year;
-  final String txt;
+  final String country;
   final VoidCallback? onPlayTap;
 
   const CustomMovieCard({
@@ -17,7 +17,7 @@ class CustomMovieCard extends StatelessWidget {
     required this.title,
     required this.rating,
     required this.year,
-    required this.txt,
+    required this.country,
     this.onPlayTap,
   });
 
@@ -37,7 +37,7 @@ class CustomMovieCard extends StatelessWidget {
             children: [
               ClipRRect(
                 borderRadius: BorderRadius.circular(12),
-                child: Image.asset(
+                child: Image.network(
                   imagePath,
                   width: 60,
                   height: 60,
@@ -93,7 +93,7 @@ class CustomMovieCard extends StatelessWidget {
                         borderRadius: BorderRadius.circular(8),
                       ),
                       child: Text(
-                        txt.toUpperCase(),
+                        country.toUpperCase(),
                         style: TextStyle(
                           color: AppColors.txtClr2,
                           fontSize: 10,

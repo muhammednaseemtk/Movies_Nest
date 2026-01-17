@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_nest/core/app_colors.dart';
-import 'package:movie_nest/view/home/widget/trending_movie_list.dart';
 import 'package:movie_nest/view/search/widget/filter_card.dart';
-import 'package:movie_nest/view/search/widget/recent_bar.dart';
-import 'package:movie_nest/view/search/widget/recent_card.dart';
 import 'package:movie_nest/view/search/widget/recommended_movie.dart';
 import 'package:movie_nest/view/search/widget/search_bar.dart';
 
@@ -35,16 +32,6 @@ class SearchScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 10),
-                CustomRecentBar(),
-                CustomRecentCard(title: 'The batman', onRemove: () {}),
-                CustomRecentCard(title: 'Avengers', onRemove: () {}),
-                CustomRecentCard(title: 'End Game', onRemove: () {}),
-                CustomRecentCard(
-                  title: 'Pirates of the caripine',
-                  onRemove: () {},
-                ),
-                CustomRecentCard(title: 'Angel', onRemove: () {}),
                 SizedBox(height: 10),
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 12),

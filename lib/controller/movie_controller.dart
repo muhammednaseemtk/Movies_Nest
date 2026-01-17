@@ -61,6 +61,12 @@ class MovieController extends ChangeNotifier {
     isLoading = false;
     notifyListeners();
   }
+   Future<void> fetchHomeData() async {
+   await fetchTrendingMovies();
+   await fetchUpcomingMovies();
+   await fetchTvShowsMovies();
+   notifyListeners();
+  }
 
   void setImagePath(String imagePath) {}
 }
