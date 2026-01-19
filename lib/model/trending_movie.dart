@@ -1,4 +1,5 @@
 class TrendingMovie {
+  final int? id;
   final String? title;
   final String? overView;
   final String? posterPath;
@@ -6,6 +7,7 @@ class TrendingMovie {
   final double? voteAverage;
 
   TrendingMovie({
+    this.id,
     this.title,
     this.overView,
     this.posterPath,
@@ -15,6 +17,7 @@ class TrendingMovie {
 
   factory TrendingMovie.fromJson(Map<String,dynamic>json) {
     return TrendingMovie(
+      id: json['id'],
       title: json['title'],
       overView: json['overview'],
       posterPath: json['poster_path'],
@@ -22,6 +25,4 @@ class TrendingMovie {
       voteAverage: (json['vote_average']as num).toDouble()
     );
   }
-
-  String? get originalTitle => null;
 }

@@ -7,8 +7,8 @@ class CustomWatchCard extends StatelessWidget {
   final String title;
   final String rating;
   final String year;
-  final String genre;
-  final String duration;
+  final VoidCallback onRemove;
+
 
   const CustomWatchCard({
     super.key,
@@ -16,30 +16,40 @@ class CustomWatchCard extends StatelessWidget {
     required this.title,
     required this.rating,
     required this.year,
-    required this.genre,
-    required this.duration,
+    required this.onRemove
   });
+
+  String fixedImageUrl(String url) {
+    return url.replaceAll(' ', '');
+  }
 
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(8.0),
+      padding: const EdgeInsets.all(8),
       child: Container(
         height: 120,
-        padding: EdgeInsets.all(10),
+        padding: const EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: AppColors.black,
+          color: AppColors.txtfld,
           borderRadius: BorderRadius.circular(14),
         ),
         child: Row(
           children: [
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Image.asset(
-                image,
+              child: Image.network(
+                fixedImageUrl(image),
                 width: 80,
                 height: double.infinity,
                 fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    width: 80,
+                    color: AppColors.black,
+                    child: Icon(Icons.broken_image),
+                  );
+                },
               ),
             ),
             SizedBox(width: 12),
@@ -64,23 +74,30 @@ class CustomWatchCard extends StatelessWidget {
                   SizedBox(height: 6),
                   Text(
                     title,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
                     style: TextStyle(
                       color: AppColors.txtClr,
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
                     ),
-                    maxLines: 1,
-                    overflow: TextOverflow.ellipsis,
                   ),
                   SizedBox(height: 6),
                   Text(
-                    "$year • $genre • $duration",
+                    year,
                     style: TextStyle(color: AppColors.txtClr1, fontSize: 13),
                   ),
                 ],
               ),
             ),
-            Icon(EneftyIcons.close_square_outline, color: AppColors.txtClr1),
+
+            IconButton(
+              onPressed: onRemove,
+              icon: Icon(
+                EneftyIcons.close_square_outline,
+                color: AppColors.txtClr1,
+              ),
+            ),
           ],
         ),
       ),

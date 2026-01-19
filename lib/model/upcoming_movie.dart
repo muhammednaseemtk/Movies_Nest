@@ -1,4 +1,5 @@
 class UpcomingMovie {
+  final int? id;
   final String? originalTitle;
   final String? overview;
   final String? posterPath;
@@ -7,6 +8,7 @@ class UpcomingMovie {
   final double? voteAverage;
 
   UpcomingMovie({
+    this.id,
     this.originalTitle,
     this.overview,
     this.posterPath,
@@ -17,6 +19,7 @@ class UpcomingMovie {
 
   factory UpcomingMovie.fromJson(Map<String, dynamic> json) {
     return UpcomingMovie(
+      id: json['id'],
       originalTitle: json['original_title'],
       overview: json['overview'],
       posterPath: json['poster_path'],

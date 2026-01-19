@@ -4,18 +4,14 @@ import 'package:movie_nest/controller/movie_controller.dart';
 import 'package:provider/provider.dart';
 
 class CustomMovieHeader extends StatelessWidget {
-  final bool isFavourite;
   final VoidCallback onBack;
   final VoidCallback onShare;
-  final VoidCallback onFavourite;
   final String? imagePath;
 
   const CustomMovieHeader({
     super.key,
-    required this.isFavourite,
     required this.onBack,
     required this.onShare,
-    required this.onFavourite,
     this.imagePath,
   });
 
@@ -66,31 +62,13 @@ class CustomMovieHeader extends StatelessWidget {
 
             Positioned(
               top: 50,
-              right: 70,
+              right: 25,
               child: GestureDetector(
                 onTap: onShare,
                 child: CircleAvatar(
                   backgroundColor: AppColors.black,
                   radius: 20,
                   child: Icon(Icons.share, color: AppColors.txtClr),
-                ),
-              ),
-            ),
-
-            Positioned(
-              top: 50,
-              right: 16,
-              child: GestureDetector(
-                onTap: null,
-                child: CircleAvatar(
-                  backgroundColor: AppColors.black,
-                  radius: 20,
-                  child: Icon(
-                    isFavourite
-                        ? Icons.favorite
-                        : Icons.favorite_border,
-                    color: AppColors.txtClr,
-                  ),
                 ),
               ),
             ),

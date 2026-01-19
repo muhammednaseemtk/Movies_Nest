@@ -11,71 +11,101 @@ import 'package:provider/provider.dart';
 
 class TvShowScreen extends StatefulWidget {
   final TvshowMovie data;
-  const TvShowScreen({super.key,required this.data});
+  const TvShowScreen({super.key, required this.data});
 
   @override
   State<TvShowScreen> createState() => _TvShowScreenState();
 }
 
 class _TvShowScreenState extends State<TvShowScreen> {
+  late Future<void> tvShowFuture;
+
   @override
   void initState() {
     super.initState();
-    Future.microtask(() {
-      context.read<MovieController>().fetchTvShowsMovies();
-    });
+    tvShowFuture = context.read<MovieController>().fetchTvShowsMovies();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      body:Consumer<MovieController>(
-        builder: (context, movieProvider, child) {
-          if (movieProvider.isLoading) {
-            return const Center(child: CircularProgressIndicator(color: AppColors.txtClr2,));
+      body: FutureBuilder(
+        future: tvShowFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(color: AppColors.txtClr2),
+            );
           }
 
-          if (movieProvider.tvShowMovies.isEmpty) {
-            return const Center(child: Text('No data'));
+          if (snapshot.hasError) {
+            return const Center(
+              child: Text(
+                'Something went wrong',
+                style: TextStyle(color: Colors.white),
+              ),
+            );
           }
 
-          final movie = movieProvider.tvShowMovies.first;
+          return Consumer<MovieController>(
+            builder: (context, movieProvider, child) {
+              if (movieProvider.tvShowMovies.isEmpty) {
+                return Center(
+                  child: Text('No data', style: TextStyle(color: Colors.white)),
+                );
+              }
 
-          return SingleChildScrollView(
-            child: Column(
-              children: [
-                CustomMovieHeader(
-                  isFavourite: movieProvider.isFavourite,
-                  imagePath: '${Url.imageBaseUrl}${widget.data.posterPath}',
-                  onBack: () => Navigator.pop(context),
-                  onShare: () {},
-                  onFavourite: movieProvider.toggleFavourite,
-                ),
+              return SingleChildScrollView(
+                child: Column(
+                  children: [
+                    CustomMovieHeader(
+                      imagePath: '${Url.imageBaseUrl}${widget.data.posterPath}',
+                      onBack: () => Navigator.pop(context),
+                      onShare: () {},
+                    ),
 
-                SizedBox(height: 16),
+                    SizedBox(height: 16),
 
-                CustomMovieTitle(
-                  title: '${widget.data.originalName}',
-                  rating: '${widget.data.voteAverage}',
-                  date: '${widget.data.firstAirDate}',
-                  quality: '4K HDR',
-                ),
-                SizedBox(height: 20),
+                    CustomMovieTitle(
+                      title: widget.data.originalName ?? '',
+                      rating: widget.data.voteAverage?.toStringAsFixed(1) ?? '',
+                      date: widget.data.firstAirDate ?? '',
+                      quality: '4K HDR',
+                    ),
 
-                CustomMovieButtons(
-                  onPlayTrailer: () {},
-                  onAddToWatchlist: movieProvider.toggleFavourite,
-                  isInWatchlist: movieProvider.isFavourite,
+                    SizedBox(height: 20),
+
+                    CustomMovieButtons(
+                      onPlayTrailer: () {},
+                      onAddToWatchlist: () {
+                        if (movieProvider.isTvshowWatchList(
+                          widget.data.originalName ?? '',
+                        )) {
+                          movieProvider.removeTvshowWatchList(widget.data);
+                        } else {
+                          movieProvider.addTvshowWatchList(widget.data);
+                        }
+                      },
+                      isInWatchlist: movieProvider.isTvshowWatchList(
+                        widget.data.originalName ?? '',
+                      ),
+                    ),
+
+                    SizedBox(height: 10),
+
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: CustomMovieOverview(
+                        description: widget.data.overView ?? '',
+                      ),
+                    ),
+
+                    SizedBox(height: 10),
+                  ],
                 ),
-                SizedBox(height: 10),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: CustomMovieOverview(description: '${widget.data.overView}'),
-                ),
-                SizedBox(height: 10),
-              ],
-            ),
+              );
+            },
           );
         },
       ),

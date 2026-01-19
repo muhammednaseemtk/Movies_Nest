@@ -1,6 +1,8 @@
 import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:movie_nest/controller/movie_controller.dart';
 import 'package:movie_nest/core/app_colors.dart';
+import 'package:provider/provider.dart';
 
 class CustomSearchBar extends StatelessWidget {
   const CustomSearchBar({super.key});
@@ -23,10 +25,15 @@ class CustomSearchBar extends StatelessWidget {
               style: TextStyle(color: AppColors.txtClr),
               cursorColor: AppColors.txtClr1,
               decoration: InputDecoration(
-                hintText: "Movies, actors, or directors...",
+                hintText: "Movies....",
                 hintStyle: TextStyle(color: AppColors.txtClr1),
                 border: InputBorder.none,
               ),
+              onChanged:(value){
+                context
+                .read<MovieController>()
+                .searchMovies(value);
+              },
             ),
           ),
         ],

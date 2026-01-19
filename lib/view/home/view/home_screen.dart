@@ -19,12 +19,15 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  late Future<void> _homeData;
+ Future<void>?homeData;
 
   @override
   void initState() {
     super.initState();
-    _homeData = context.read<MovieController>().fetchHomeData();
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      homeData = context.read<MovieController>().fetchHomeData();
+      setState(() {}); 
+    });
   }
 
   @override
@@ -33,7 +36,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: AppColors.backgroundColor,
       body: SafeArea(
         child: FutureBuilder(
-          future: _homeData,
+          future: homeData,
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(

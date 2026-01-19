@@ -1,91 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:movie_nest/core/app_colors.dart';
+import 'package:movie_nest/core/url.dart';
+import 'package:movie_nest/model/trending_movie.dart';
+import 'package:movie_nest/view/movie/view/trending.dart';
 
 class CustomRecommendedMovie extends StatelessWidget {
-  final String image;
-  final String title;
-  final String year;
-  final String rating;
+  final TrendingMovie data;
 
   const CustomRecommendedMovie({
     super.key,
-    required this.image,
-    required this.title,
-    required this.year,
-    required this.rating,
+    required this.data,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        SizedBox(
-          width: 120,
-          height: 120,
-          child: Stack(
-            children: [
-              Container(
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  image: DecorationImage(
-                    image: AssetImage(image),
-                    fit: BoxFit.cover,
-                  ),
-                ),
+    return InkWell(
+      borderRadius: BorderRadius.circular(6),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => TrendingScreen(data: data),
+          ),
+        );
+      },
+      child: SizedBox(
+        width: 150,
+        height: 150,
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(7),
+            image: DecorationImage(
+              image: NetworkImage(
+                '${Url.imageBaseUrl}${data.posterPath}',
               ),
-              Positioned(
-                top: 10,
-                right: 10,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 8, vertical: 4),
-                  decoration: BoxDecoration(
-                    color: AppColors.black,
-                    borderRadius: BorderRadius.circular(8),
-                  ),
-                  child: Row(
-                    children: [
-                       Icon(
-                        Icons.star,
-                        color: AppColors.txtClr5,
-                        size: 14,
-                      ),
-                       SizedBox(width: 4),
-                      Text(
-                        rating,
-                        style:  TextStyle(
-                          color: AppColors.txtClr,
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
+              fit: BoxFit.cover,
+            ),
           ),
         ),
-        Text(
-          title,
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-          style:  TextStyle(
-            color: AppColors.txtClr,
-            fontSize: 14,
-            fontWeight: FontWeight.w600,
-          ),
-        ),
-
-        Text(
-          year,
-          style:  TextStyle(
-            color: AppColors.txtClr1,
-            fontSize: 12,
-          ),
-        ),
-      ],
+      ),
     );
   }
 }
