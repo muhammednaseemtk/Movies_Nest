@@ -9,7 +9,6 @@ class MovieController extends ChangeNotifier {
   final MovieService service = MovieService();
 
   List<UpcomingMovie> upcomingMovies = [];
-  List<UpcomingMovie> filteredUpcomingMovies = [];
   List<UpcomingMovie> upcomingWatchList = [];
 
   List<TrendingMovie> trendingMovies = [];
@@ -17,7 +16,6 @@ class MovieController extends ChangeNotifier {
   List<TrendingMovie> trendingWatchList = [];
 
   List<TvshowMovie> tvShowMovies = [];
-  List<TvshowMovie> filteredTvshowMovies = [];
   List<TvshowMovie> tvShowWatchList = [];
 
   bool isLoading = false;
