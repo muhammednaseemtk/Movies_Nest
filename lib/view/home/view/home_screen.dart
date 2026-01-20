@@ -59,9 +59,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   CustomTopMovie(),
                   CustomBanner(
-                    imagePath: 'asset/image/it1.jpg',
-                    category: 'Horror',
-                    title: 'IT',
+                    imagePath: 'asset/image/avatar.avif',
+                    category: 'Adventure',
+                    title: 'Avatar 3',
                   ),
                   SizedBox(height: 25),
                   CustomSeeAll(title: 'Trending Movies'),
