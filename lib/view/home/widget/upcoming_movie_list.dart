@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_nest/core/url.dart';
-import 'package:movie_nest/controller/movie_controller.dart';
+import 'package:movie_nest/controller/upcoming_movie_controller.dart';
 import 'package:movie_nest/view/movie/view/upcoming.dart';
 import 'package:provider/provider.dart';
 

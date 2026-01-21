@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:movie_nest/core/app_colors.dart';
-import 'package:movie_nest/controller/movie_controller.dart';
+import 'package:movie_nest/controller/upcoming_movie_controller.dart';
 import 'package:provider/provider.dart';
 
 class CustomMovieHeader extends StatelessWidget {

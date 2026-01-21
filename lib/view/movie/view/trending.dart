@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:movie_nest/core/app_colors.dart';
 import 'package:movie_nest/core/url.dart';
 import 'package:movie_nest/model/trending_movie.dart';
-import 'package:movie_nest/controller/movie_controller.dart';
+import 'package:movie_nest/controller/upcoming_movie_controller.dart';
 import 'package:movie_nest/view/movie/widget/movie_button.dart';
 import 'package:movie_nest/view/movie/widget/movie_header.dart';
 import 'package:movie_nest/view/movie/widget/movie_overview.dart';
