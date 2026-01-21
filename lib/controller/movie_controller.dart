@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:movie_nest/core/url.dart';
 import 'package:movie_nest/model/trending_movie.dart';
