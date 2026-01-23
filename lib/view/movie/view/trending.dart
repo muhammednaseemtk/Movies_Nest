@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_nest/controller/home_controller.dart';
 import 'package:movie_nest/core/app_colors.dart';
 import 'package:movie_nest/core/url.dart';
 import 'package:movie_nest/model/trending_movie.dart';
@@ -23,7 +24,7 @@ class _TrendingScreenState extends State<TrendingScreen> {
   @override
   void initState() {
     super.initState();
-    trendingFuture = context.read<MovieController>().fetchTrendingMovies();
+    trendingFuture = context.read<HomeController>().fetchTrendingMovies();
   }
 
   @override

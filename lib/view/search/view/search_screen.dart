@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_nest/controller/home_controller.dart';
 import 'package:movie_nest/controller/upcoming_movie_controller.dart';
 import 'package:movie_nest/core/app_colors.dart';
 import 'package:movie_nest/core/url.dart';
@@ -20,7 +21,7 @@ class _SearchScreenState extends State<SearchScreen> {
   void didChangeDependencies() {
     super.didChangeDependencies();
     if (!_loaded) {
-      context.read<MovieController>().fetchTrendingMovies();
+      context.read<HomeController>().fetchTrendingMovies();
       _loaded = true;
     }
   }

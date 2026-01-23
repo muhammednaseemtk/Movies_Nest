@@ -1,7 +1,4 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:movie_nest/core/url.dart';
 import 'package:movie_nest/model/trending_movie.dart';
 import 'package:movie_nest/model/tvshow_movie.dart';
 import 'package:movie_nest/model/upcoming_movie.dart';
@@ -68,33 +65,6 @@ class MovieController extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> fetchTrendingMovies() async {
-    trendingMovies = await service.fetchTrendingMovies();
-    filteredTrendingMovies = trendingMovies;
-  }
-
-  Future<void> fetchUpcomingMovies() async {
-    upcomingMovies = await service.fetchUpcomingMovies();
-  }
-
-  Future<void> fetchTvShowsMovies() async {
-    tvShowMovies = await service.fetchTvShowsMovies();
-  }
-
-  Future<void> fetchHomeData() async {
-    isLoading = true;
-    notifyListeners();
-
-    await Future.wait([
-      fetchTrendingMovies(),
-      fetchUpcomingMovies(),
-      fetchTvShowsMovies(),
-    ]);
-
-    isLoading = false;
-    notifyListeners();
-  }
-
   void searchMovies(String query) {
     if (query.isEmpty) {
       filteredTrendingMovies = trendingMovies;
@@ -110,17 +80,4 @@ class MovieController extends ChangeNotifier {
   }
 }
 
-class MovieImageController extends ChangeNotifier {
-  String? imagePath;
 
-  void setImagePath(String? path) {
-    imagePath = path;
-  }
-
-  ImageProvider get image {
-    if (imagePath == null || imagePath!.isEmpty) {
-      return const AssetImage('asset/image/it1.jpg');
-    }
-    return NetworkImage(Url.imageBaseUrl + imagePath!);
-  }
-}

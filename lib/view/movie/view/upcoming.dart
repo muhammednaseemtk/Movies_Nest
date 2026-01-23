@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_nest/controller/home_controller.dart';
 import 'package:movie_nest/core/app_colors.dart';
 import 'package:movie_nest/core/url.dart';
 import 'package:movie_nest/model/upcoming_movie.dart';
@@ -23,7 +24,7 @@ class _UpcomingScreenState extends State<UpcomingScreen> {
   @override
   void initState() {
     super.initState();
-    upcomingFuture = context.read<MovieController>().fetchUpcomingMovies();
+    upcomingFuture = context.read<HomeController>().fetchUpcomingMovies();
   }
 
   @override

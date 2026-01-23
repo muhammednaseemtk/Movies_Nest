@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movie_nest/controller/upcoming_movie_controller.dart';
+import 'package:movie_nest/controller/home_controller.dart';
 import 'package:movie_nest/core/app_colors.dart';
-import 'package:movie_nest/core/url.dart';
 import 'package:movie_nest/view/home/widget/banner.dart';
-import 'package:movie_nest/view/home/widget/movie_card.dart';
 import 'package:movie_nest/view/home/widget/see_all.dart';
 import 'package:movie_nest/view/home/widget/top_movie.dart';
 import 'package:movie_nest/view/home/widget/trending_movie_list.dart';
@@ -25,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      homeData = context.read<MovieController>().fetchHomeData();
+      homeData = context.read<HomeController>().fetchHomeData();
       setState(() {}); 
     });
   }

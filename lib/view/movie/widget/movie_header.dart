@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:movie_nest/controller/image_controller.dart';
 import 'package:movie_nest/core/app_colors.dart';
 import 'package:movie_nest/controller/upcoming_movie_controller.dart';
 import 'package:provider/provider.dart';
@@ -17,7 +18,7 @@ class CustomMovieHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer<MovieImageController>(
+    return Consumer<ImageController>(
       builder: (context, imageProvider, _) {
       
         imageProvider.setImagePath(imagePath);
