@@ -1,16 +1,38 @@
-# movie_nest
+# 🎬 Movie Nest
 
-A new Flutter project.
+**Movie Nest** is a Flutter application built to explore movies with a clean UI and smooth performance.  
+This project follows Flutter best practices and is structured for scalability and readability.
 
-## Getting Started
+---
+
+## 📱 Preview
+
+<p align="center">
+  <img 
+    src="https://github.com/user-attachments/assets/570d2f94-f83d-4e37-9edc-14e485d07422"
+    alt="Movie Nest App Preview"
+    width="300"
+  />
+</p>
+
+---
+
+## 🚀 Getting Started
 
 This project is a starting point for a Flutter application.
 
-A few resources to get you started if this is your first Flutter project:
+### Prerequisites
+- Flutter SDK (latest stable)
+- Dart SDK
+- Android Studio / VS Code
+- Android Emulator or Physical Device
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+---
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## 🛠️ Setup Instructions
+
+```bash
+git clone https://github.com/your-username/movie_nest.git
+cd movie_nest
+flutter pub get
+flutter run
