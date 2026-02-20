@@ -11,7 +11,7 @@ This project follows Flutter best practices and is structured for scalability an
   <img 
     src="https://github.com/user-attachments/assets/570d2f94-f83d-4e37-9edc-14e485d07422"
     alt="Movie Nest App Preview"
-    width="220"
+    width="200"
   />
   <img
     src="https://github.com/user-attachments/assets/cd2ede08-d7f9-4608-9f21-7b3ce1f117ad"
