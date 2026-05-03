@@ -13,10 +13,10 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => MainPageController()),
-        ChangeNotifierProvider(create: (_) => MovieController()),
+        ChangeNotifierProvider(create: (_) => UpcomingMovieController()),
         ChangeNotifierProvider(create: (_) => ImageController()),
         ChangeNotifierProvider(create: (_) => TrendingMovieController()),
-        ChangeNotifierProvider(create: (_) => TvshowMovieController()),
+        ChangeNotifierProvider(create: (_) => TvShowMovieController()),
         ChangeNotifierProvider(create: (_) => HomeController()),
       ],
       child: const MyApp(),

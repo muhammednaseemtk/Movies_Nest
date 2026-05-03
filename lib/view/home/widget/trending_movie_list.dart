@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:movie_nest/controller/trending_movie_controller.dart';
 import 'package:movie_nest/core/url.dart';
-import 'package:movie_nest/controller/upcoming_movie_controller.dart';
 import 'package:movie_nest/view/movie/view/trending.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +14,7 @@ class CustomTrendingMovieList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 200,
-      child: Consumer<MovieController>(
+      child: Consumer<TrendingMovieController>(
         builder: (context, value, child) {
         return ListView.separated(
           padding: const EdgeInsets.symmetric(horizontal: 16),

@@ -1,83 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:movie_nest/model/trending_movie.dart';
-import 'package:movie_nest/model/tvshow_movie.dart';
 import 'package:movie_nest/model/upcoming_movie.dart';
 import 'package:movie_nest/service/movies_service.dart';
 
-class MovieController extends ChangeNotifier {
+class UpcomingMovieController extends ChangeNotifier {
   final MovieService service = MovieService();
-
-  List<UpcomingMovie> upcomingMovies = [];
-  List<UpcomingMovie> upcomingWatchList = [];
-
-  List<TrendingMovie> trendingMovies = [];
-  List<TrendingMovie> filteredTrendingMovies = [];
-  List<TrendingMovie> trendingWatchList = [];
-
-  List<TvshowMovie> tvShowMovies = [];
-  List<TvshowMovie> tvShowWatchList = [];
 
   bool isLoading = false;
 
-  bool isTrendingWatchList(String title) {
-    return trendingWatchList.any((movie) => movie.title == title);
-  }
-  bool isUpcomingWatchList(String title) {
-    return upcomingWatchList.any((movie) => movie.originalTitle == title);
-  }
-  bool isTvshowWatchList(String title) {
-    return tvShowWatchList.any((movie) => movie.originalName == title);
-  }
+  List<UpcomingMovie> upcomingMovies = [];
+  List<UpcomingMovie> watchList = [];
 
-  void addTrendingWatchList(TrendingMovie movie) {
-    if (!isTrendingWatchList(movie.title ?? '')) {
-      trendingWatchList.add(movie);
+  Future<void> fetchUpcomingMovies() async {
+    try {
+      isLoading = true;
       notifyListeners();
-    }
-  }
 
-  void removeTrendingWatchList(TrendingMovie movie) {
-    trendingWatchList.removeWhere((m) => m.id == movie.id);
+      upcomingMovies = await service.fetchUpcomingMovies();
+    } catch (e) {
+      debugPrint("Upcoming Error: $e");
+    }
+
+    isLoading = false;
     notifyListeners();
   }
 
-  void addUpcomingWatchList(UpcomingMovie movie) {
-    if (!isUpcomingWatchList(movie.originalTitle ?? '')) {
-      upcomingWatchList.add(movie);
-      notifyListeners();
-    }
+  bool isInWatchList(String title) {
+    return watchList.any((m) => m.originalTitle == title);
   }
 
-  void removeUpcomingWatchList(UpcomingMovie movie) {
-    upcomingWatchList.removeWhere((m) => m.id == movie.id);
-    notifyListeners();
-  }
-
-  void addTvshowWatchList(TvshowMovie movie) {
-    if (!isTvshowWatchList(movie.originalName ?? '')) {
-      tvShowWatchList.add(movie);
-      notifyListeners();
-    }
-  }
-
-  void removeTvshowWatchList(TvshowMovie movie) {
-    tvShowWatchList.removeWhere((m) => m.id == movie.id);
-    notifyListeners();
-  }
-
-  void searchMovies(String query) {
-    if (query.isEmpty) {
-      filteredTrendingMovies = trendingMovies;
+  void toggleWatchList(UpcomingMovie movie) {
+    if (isInWatchList(movie.originalTitle ?? '')) {
+      watchList.removeWhere((m) => m.id == movie.id);
     } else {
-      filteredTrendingMovies = trendingMovies
-          .where(
-            (movie) =>
-                (movie.title ?? '').toLowerCase().contains(query.toLowerCase()),
-          )
-          .toList();
+      watchList.add(movie);
     }
     notifyListeners();
   }
 }
-
-

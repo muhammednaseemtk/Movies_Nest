@@ -31,7 +31,7 @@ class CustomMovieCard extends StatelessWidget {
         color: AppColors.txtClr4,
         borderRadius: BorderRadius.circular(16),
       ),
-      child: Consumer<MovieController>(
+      child: Consumer<UpcomingMovieController>(
         builder: (context, value, child) {
           return Row(
             children: [

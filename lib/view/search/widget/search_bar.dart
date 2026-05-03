@@ -1,6 +1,6 @@
 import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_nest/controller/upcoming_movie_controller.dart';
+import 'package:movie_nest/controller/trending_movie_controller.dart';
 import 'package:movie_nest/core/app_colors.dart';
 import 'package:provider/provider.dart';
 
@@ -17,9 +17,12 @@ class CustomSearchBar extends StatelessWidget {
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
-        children:  [
-          Icon(EneftyIcons.search_normal_outline, color: AppColors.txtClr1),
-          SizedBox(width: 10),
+        children: [
+          Icon(EneftyIcons.search_normal_outline,
+              color: AppColors.txtClr1),
+
+          const SizedBox(width: 10),
+
           Expanded(
             child: TextField(
               style: TextStyle(color: AppColors.txtClr),
@@ -29,10 +32,11 @@ class CustomSearchBar extends StatelessWidget {
                 hintStyle: TextStyle(color: AppColors.txtClr1),
                 border: InputBorder.none,
               ),
-              onChanged:(value){
+
+              onChanged: (value) {
                 context
-                .read<MovieController>()
-                .searchMovies(value);
+                    .read<TrendingMovieController>()
+                    .searchMovies(value);
               },
             ),
           ),

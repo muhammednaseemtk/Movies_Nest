@@ -14,7 +14,7 @@ class CustomUpcomingMovieList extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 200,
-      child: Consumer<MovieController>(
+      child: Consumer<UpcomingMovieController>(
         builder: (context, value, child) {
         return ListView.separated(
           padding: const EdgeInsets.symmetric(horizontal: 16),
