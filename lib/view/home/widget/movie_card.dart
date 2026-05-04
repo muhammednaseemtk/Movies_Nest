@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie_nest/controller/upcoming_movie_controller.dart';
-import 'package:movie_nest/core/app_colors.dart';
+import 'package:movie_nest/view/movie/controller/upcoming_movie_controller.dart';
+import 'package:movie_nest/core/constants/app_colors.dart';
 import 'package:provider/provider.dart';
 
 class CustomMovieCard extends StatelessWidget {

@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:movie_nest/controller/home_controller.dart';
-import 'package:movie_nest/controller/image_controller.dart';
-import 'package:movie_nest/controller/main_page_controller.dart';
-import 'package:movie_nest/controller/trending_movie_controller.dart';
-import 'package:movie_nest/controller/tvshow_movie_controller.dart';
-import 'package:movie_nest/controller/upcoming_movie_controller.dart';
+import 'package:movie_nest/view/home/controller/home_controller.dart';
+import 'package:movie_nest/view/home/controller/image_controller.dart';
+import 'package:movie_nest/view/home/controller/main_page_controller.dart';
+import 'package:movie_nest/view/movie/controller/trending_movie_controller.dart';
+import 'package:movie_nest/view/movie/controller/tvshow_movie_controller.dart';
+import 'package:movie_nest/view/movie/controller/upcoming_movie_controller.dart';
 import 'package:provider/provider.dart';
 import 'package:movie_nest/view/splash/view/splash_screen.dart';
 

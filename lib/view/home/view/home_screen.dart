@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie_nest/controller/home_controller.dart';
-import 'package:movie_nest/core/app_colors.dart';
+import 'package:movie_nest/view/home/controller/home_controller.dart';
+import 'package:movie_nest/core/constants/app_colors.dart';
 import 'package:movie_nest/view/home/widget/banner.dart';
 import 'package:movie_nest/view/home/widget/see_all.dart';
 import 'package:movie_nest/view/home/widget/top_movie.dart';

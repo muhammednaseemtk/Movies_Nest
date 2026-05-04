@@ -1,4 +1,4 @@
-import 'package:movie_nest/model/trending_movie.dart';
+import 'package:movie_nest/view/movie/model/trending_movie.dart';
 
 class TrendingMovieModel {
   final int? page;

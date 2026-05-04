@@ -1,6 +1,6 @@
-import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_nest/core/app_colors.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:movie_nest/core/constants/app_colors.dart';
 
 class CustomTopMovie extends StatelessWidget {
 
@@ -18,7 +18,7 @@ class CustomTopMovie extends StatelessWidget {
           Row(
             children: [
               Icon(
-                EneftyIcons.play_bold,
+                Iconsax.video_horizontal_copy,
                 color: AppColors.txtClr2,
                 size: 28,
               ),

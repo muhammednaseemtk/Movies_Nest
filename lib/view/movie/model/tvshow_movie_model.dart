@@ -1,4 +1,4 @@
-import 'package:movie_nest/model/tvshow_movie.dart';
+import 'package:movie_nest/view/movie/model/tvshow_movie.dart';
 
 class TvshowMovieModel {
   final int? page;

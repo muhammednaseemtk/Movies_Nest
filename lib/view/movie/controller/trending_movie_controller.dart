@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movie_nest/model/trending_movie.dart';
-import 'package:movie_nest/service/movies_service.dart';
+import 'package:movie_nest/view/movie/model/trending_movie.dart';
+import 'package:movie_nest/view/movie/service/trending_service.dart';
 
 class TrendingMovieController extends ChangeNotifier {
-  final MovieService service = MovieService();
+  final TrendingService service = TrendingService();
 
   bool isLoading = false;
 

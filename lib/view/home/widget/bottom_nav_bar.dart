@@ -1,6 +1,6 @@
-import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_nest/core/app_colors.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:movie_nest/core/constants/app_colors.dart';
 
 class BottomNavBar extends StatelessWidget {
   final int currentIndex;
@@ -22,12 +22,12 @@ class BottomNavBar extends StatelessWidget {
       unselectedItemColor: AppColors.txtClr4,
       onTap: onTap,
       items:  [
-        BottomNavigationBarItem(icon: Icon(EneftyIcons.home_2_outline), label: 'Home'),
+        BottomNavigationBarItem(icon: Icon(Iconsax.house_copy), label: 'Home'),
         BottomNavigationBarItem(
-          icon: Icon(EneftyIcons.search_normal_2_outline),
+          icon: Icon(Iconsax.search_normal_copy),
           label: 'Search',
         ),
-        BottomNavigationBarItem(icon: Icon(EneftyIcons.save_2_outline),label: 'My List')
+        BottomNavigationBarItem(icon: Icon(Iconsax.save_2_copy),label: 'Saved')
       ],
     );
   }

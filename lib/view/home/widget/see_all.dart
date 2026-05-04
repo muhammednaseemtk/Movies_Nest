@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_nest/core/app_colors.dart';
+import 'package:movie_nest/core/constants/app_colors.dart';
 
 class CustomSeeAll extends StatelessWidget {
   final String title;

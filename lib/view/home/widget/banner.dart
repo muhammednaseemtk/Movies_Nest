@@ -1,6 +1,7 @@
 import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_nest/core/app_colors.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:movie_nest/core/constants/app_colors.dart';
 
 class CustomBanner extends StatelessWidget {
   final String imagePath;
@@ -72,14 +73,14 @@ class CustomBanner extends StatelessWidget {
                       borderRadius: BorderRadius.circular(12),
                     ),
                   ),
-                  icon: Icon(EneftyIcons.play_outline, color: AppColors.txtClr),
+                  icon: Icon(Iconsax.play_circle_copy,size: 24, color: AppColors.txtClr),
                   label: Text(
                     'Play',
                     style: TextStyle(color: AppColors.txtClr),
                   ),
                 ),
                 SizedBox(width: 10),
-                Icon(EneftyIcons.add_square_outline,color: AppColors.txtClr,)
+                Icon(EneftyIcons.add_square_outline, color: AppColors.txtClr),
               ],
             ),
           ],

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie_nest/core/url.dart';
-import 'package:movie_nest/model/trending_movie.dart';
+import 'package:movie_nest/core/constants/url.dart';
+import 'package:movie_nest/view/movie/model/trending_movie.dart';
 import 'package:movie_nest/view/movie/view/trending.dart';
 
 class CustomRecommendedMovie extends StatelessWidget {

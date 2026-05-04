@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movie_nest/model/tvshow_movie.dart';
-import 'package:movie_nest/service/movies_service.dart';
+import 'package:movie_nest/view/movie/model/tvshow_movie.dart';
+import 'package:movie_nest/view/movie/service/tvshow_service.dart';
 
 class TvShowMovieController extends ChangeNotifier {
-  final MovieService service = MovieService();
+  final TvShowService service = TvShowService();
 
   bool isLoading = false;
 
@@ -15,7 +15,7 @@ class TvShowMovieController extends ChangeNotifier {
       isLoading = true;
       notifyListeners();
 
-      tvShows = await service.fetchTvShowsMovies();
+      tvShows = await service.fetchTvShows();
     } catch (e) {
       debugPrint("TV Error: $e");
     }

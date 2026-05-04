@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:movie_nest/controller/image_controller.dart';
-import 'package:movie_nest/core/app_colors.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:movie_nest/view/home/controller/image_controller.dart';
+import 'package:movie_nest/core/constants/app_colors.dart';
 import 'package:provider/provider.dart';
 
 class CustomMovieHeader extends StatelessWidget {
@@ -68,7 +69,7 @@ class CustomMovieHeader extends StatelessWidget {
                 child: CircleAvatar(
                   backgroundColor: AppColors.black,
                   radius: 20,
-                  child: Icon(Icons.share, color: AppColors.txtClr),
+                  child: Icon(Iconsax.send_1_copy, color: AppColors.txtClr),
                 ),
               ),
             ),

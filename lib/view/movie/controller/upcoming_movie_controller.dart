@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:movie_nest/model/upcoming_movie.dart';
-import 'package:movie_nest/service/movies_service.dart';
+import 'package:movie_nest/view/movie/model/upcoming_movie.dart';
+import 'package:movie_nest/view/movie/service/upcoming_service.dart';
 
 class UpcomingMovieController extends ChangeNotifier {
-  final MovieService service = MovieService();
+  final UpcomingService service = UpcomingService();
 
   bool isLoading = false;
 

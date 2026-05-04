@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:movie_nest/core/url.dart';
+import 'package:movie_nest/core/constants/url.dart';
 
 class ImageController extends ChangeNotifier {
   String? imagePath;

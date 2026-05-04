@@ -1,6 +1,6 @@
 import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:movie_nest/core/app_colors.dart';
+import 'package:movie_nest/core/constants/app_colors.dart';
 
 class CustomWatchCard extends StatelessWidget {
   final String image;

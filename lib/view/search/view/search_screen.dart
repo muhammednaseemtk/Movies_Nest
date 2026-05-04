@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:movie_nest/controller/trending_movie_controller.dart';
-import 'package:movie_nest/core/app_colors.dart';
+import 'package:movie_nest/view/movie/controller/trending_movie_controller.dart';
+import 'package:movie_nest/core/constants/app_colors.dart';
 import 'package:movie_nest/view/search/widget/recommended_movie.dart';
 import 'package:movie_nest/view/search/widget/search_bar.dart';
 import 'package:provider/provider.dart';
