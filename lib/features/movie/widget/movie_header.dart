@@ -1,0 +1,81 @@
+import 'package:flutter/material.dart';
+import 'package:iconsax_flutter/iconsax_flutter.dart';
+import 'package:movie_nest/features/home/controller/image_controller.dart';
+import 'package:movie_nest/core/constants/app_colors.dart';
+import 'package:provider/provider.dart';
+
+class MovieHeader extends StatelessWidget {
+  final VoidCallback onBack;
+  final VoidCallback onShare;
+  final String? imagePath;
+
+  const MovieHeader({
+    super.key,
+    required this.onBack,
+    required this.onShare,
+    this.imagePath,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<ImageController>(
+      builder: (context, imageProvider, _) {
+      
+        imageProvider.setImagePath(imagePath);
+
+        return Stack(
+          children: [
+            SizedBox(
+              height: 420,
+              width: double.infinity,
+              child: Image(
+                image: imageProvider.image,
+                fit: BoxFit.cover,
+              ),
+            ),
+
+            Container(
+              height: 420,
+              decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.bottomCenter,
+                  end: Alignment.topCenter,
+                  colors: [
+                    AppColors.black,
+                    AppColors.transparent,
+                  ],
+                ),
+              ),
+            ),
+
+            Positioned(
+              top: 50,
+              left: 16,
+              child: GestureDetector(
+                onTap: onBack,
+                child: CircleAvatar(
+                  backgroundColor: AppColors.black,
+                  radius: 20,
+                  child: Icon(Icons.arrow_back, color: AppColors.white),
+                ),
+              ),
+            ),
+
+            Positioned(
+              top: 50,
+              right: 25,
+              child: GestureDetector(
+                onTap: onShare,
+                child: CircleAvatar(
+                  backgroundColor: AppColors.black,
+                  radius: 20,
+                  child: Icon(Iconsax.send_1_copy, color: AppColors.white),
+                ),
+              ),
+            ),
+          ],
+        );
+      },
+    );
+  }
+}

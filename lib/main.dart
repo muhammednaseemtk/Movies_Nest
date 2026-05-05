@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:movie_nest/view/home/controller/home_controller.dart';
-import 'package:movie_nest/view/home/controller/image_controller.dart';
-import 'package:movie_nest/view/home/controller/main_page_controller.dart';
-import 'package:movie_nest/view/movie/controller/trending_movie_controller.dart';
-import 'package:movie_nest/view/movie/controller/tvshow_movie_controller.dart';
-import 'package:movie_nest/view/movie/controller/upcoming_movie_controller.dart';
+import 'package:movie_nest/features/home/controller/home_controller.dart';
+import 'package:movie_nest/features/home/controller/image_controller.dart';
+import 'package:movie_nest/features/home/controller/main_page_controller.dart';
+import 'package:movie_nest/features/movie/controller/trending_movie_controller.dart';
+import 'package:movie_nest/features/movie/controller/tvshow_movie_controller.dart';
+import 'package:movie_nest/features/movie/controller/upcoming_movie_controller.dart';
+import 'package:movie_nest/features/onboard/controller/onboard_controller.dart';
+import 'package:movie_nest/features/splash/view/splash_screen.dart';
 import 'package:provider/provider.dart';
-import 'package:movie_nest/view/splash/view/splash_screen.dart';
 
 void main() {
   runApp(
@@ -18,6 +19,7 @@ void main() {
         ChangeNotifierProvider(create: (_) => TrendingMovieController()),
         ChangeNotifierProvider(create: (_) => TvShowMovieController()),
         ChangeNotifierProvider(create: (_) => HomeController()),
+        ChangeNotifierProvider(create: (_) => OnboardController()),
       ],
       child: const MyApp(),
     ),
