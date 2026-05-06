@@ -21,13 +21,13 @@ void main() {
         ChangeNotifierProvider(create: (_) => HomeController()),
         ChangeNotifierProvider(create: (_) => OnboardController()),
       ],
-      child: const MyApp(),
+      child: const MovieNest(),
     ),
   );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+class MovieNest extends StatelessWidget {
+  const MovieNest({super.key});
 
   @override
   Widget build(BuildContext context) {
