@@ -34,7 +34,7 @@ class UpcomingMovieList extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16),
             scrollDirection: Axis.horizontal,
             itemCount: controller.upcomingMovies.length,
-            separatorBuilder: (_, __) => const SizedBox(width: 14),
+            separatorBuilder: (_, context) => const SizedBox(width: 14),
             itemBuilder: (context, index) {
               final data = controller.upcomingMovies[index];
 

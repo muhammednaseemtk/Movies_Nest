@@ -1,0 +1,120 @@
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:palette_generator_master/palette_generator_master.dart';
+import 'package:provider/provider.dart';
+import 'package:movie_nest/core/constants/app_colors.dart';
+import 'package:movie_nest/core/constants/url.dart';
+import '../controller/onboard_controller.dart';
+
+class OnboardBackgroundSlider extends StatelessWidget {
+  const OnboardBackgroundSlider({super.key});
+
+  Future<Color> getMovieColor(String imageUrl) async {
+    final paletteGenerator = await PaletteGeneratorMaster.fromImageProvider(
+      NetworkImage(imageUrl),
+    );
+
+    return paletteGenerator.dominantColor?.color ?? Colors.black;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Consumer<OnboardController>(
+      builder: (context, controller, child) {
+        SchedulerBinding.instance.addPostFrameCallback((_) {
+          precacheImage(
+            NetworkImage(Url.imageBaseUrl + controller.movies.first.posterPath),
+            context,
+          );
+        });
+
+        return CarouselSlider.builder(
+          itemCount: controller.movies.length,
+
+          itemBuilder: (context, index, realIndex) {
+            final movie = controller.movies[index];
+
+            if (index + 1 < controller.movies.length) {
+              SchedulerBinding.instance.addPostFrameCallback((_) {
+                precacheImage(
+                  NetworkImage(
+                    Url.imageBaseUrl + controller.movies[index + 1].posterPath,
+                  ),
+                  context,
+                );
+              });
+            }
+
+            return FutureBuilder<Color>(
+              future: getMovieColor(Url.imageBaseUrl + movie.posterPath),
+
+              builder: (context, snapshot) {
+                final movieColor = snapshot.data ?? Colors.black;
+
+                return Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    FadeInImage.assetNetwork(
+                      placeholder: 'asset/image/one piece.jpg',
+
+                      image: Url.imageBaseUrl + movie.posterPath,
+
+                      fit: BoxFit.cover,
+                      width: double.infinity,
+                      height: double.infinity,
+
+                      fadeInDuration: const Duration(milliseconds: 300),
+
+                      imageErrorBuilder: (context, error, stackTrace) {
+                        return Container(
+                          color: AppColors.backgroundColor,
+                          child: const Center(
+                            child: Icon(
+                              Icons.broken_image,
+                              color: AppColors.txtClr2,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+
+                    Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          colors: [
+                            Colors.transparent,
+
+                            movieColor.withOpacity(0.95),
+                          ],
+
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                        ),
+                      ),
+                    ),
+                  ],
+                );
+              },
+            );
+          },
+
+          options: CarouselOptions(
+            height: double.infinity,
+            viewportFraction: 1,
+            autoPlay: true,
+
+            autoPlayInterval: const Duration(seconds: 2),
+
+            autoPlayAnimationDuration: const Duration(milliseconds: 800),
+
+            enlargeCenterPage: false,
+            enableInfiniteScroll: true,
+
+            scrollPhysics: const NeverScrollableScrollPhysics(),
+          ),
+        );
+      },
+    );
+  }
+}

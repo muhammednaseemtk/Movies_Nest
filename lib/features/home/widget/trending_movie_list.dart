@@ -20,7 +20,7 @@ class TrendingMovieList extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 16),
           scrollDirection: Axis.horizontal,
           itemCount: value.trendingMovies.length,
-          separatorBuilder: (_, __) =>  SizedBox(width: 14),
+          separatorBuilder: (_, context) =>  SizedBox(width: 14),
           itemBuilder: (context, index) {
            final data = value.trendingMovies[index];
             return InkWell(
