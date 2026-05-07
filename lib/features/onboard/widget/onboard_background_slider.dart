@@ -85,7 +85,7 @@ class OnboardBackgroundSlider extends StatelessWidget {
                           colors: [
                             Colors.transparent,
 
-                            movieColor.withOpacity(0.95),
+                            movieColor..withValues(alpha: 0.95),
                           ],
 
                           begin: Alignment.topCenter,
