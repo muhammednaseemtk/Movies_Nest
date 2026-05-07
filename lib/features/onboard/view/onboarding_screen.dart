@@ -10,23 +10,26 @@ class OnboardingScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Consumer<OnboardController>(
-        builder: (context, controller, child) {
-          if (controller.isLoading || controller.movies.isEmpty) {
-            return const Center(
-              child: CircularProgressIndicator(color: AppColors.txtClr2,),
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColors.backgroundColor,
+        body: Consumer<OnboardController>(
+          builder: (context, controller, child) {
+            if (controller.isLoading || controller.movies.isEmpty) {
+              return const Center(
+                child: CircularProgressIndicator(color: AppColors.txtClr2,),
+              );
+            }
+      
+            return const Stack(
+              fit: StackFit.expand,
+              children: [
+                OnboardBackgroundSlider(),
+                OnboardContent(),
+              ],
             );
-          }
-
-          return const Stack(
-            fit: StackFit.expand,
-            children: [
-              OnboardBackgroundSlider(),
-              OnboardContent(),
-            ],
-          );
-        },
+          },
+        ),
       ),
     );
   }
