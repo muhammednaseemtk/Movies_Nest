@@ -38,9 +38,9 @@ class HomeScreen extends StatelessWidget {
                         TopMovie(),
 
                         CustomBanner(
-                          imagePath: 'asset/image/avatar.avif',
+                          imagePath: 'asset/image/movie.jpg',
                           category: 'Adventure',
-                          title: 'Avatar 3',
+                          title: 'One Piece',
                         ),
 
                         SizedBox(height: 25),

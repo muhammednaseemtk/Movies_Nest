@@ -29,12 +29,9 @@ class OnboardBackgroundSlider extends StatelessWidget {
           children: [
             CarouselSlider.builder(
               itemCount: controller.movies.length,
-
               itemBuilder: (context, index, realIndex) {
                 final movie = controller.movies[index];
-
                 final imageUrl = Url.imageBaseUrl + movie.posterPath;
-
                 if (index + 1 < controller.movies.length) {
                   SchedulerBinding.instance.addPostFrameCallback((_) {
                     precacheImage(
@@ -47,26 +44,19 @@ class OnboardBackgroundSlider extends StatelessWidget {
                   });
                 }
 
-                final movieColor = controller.getMovieColor(imageUrl);
-
                 return Stack(
                   fit: StackFit.expand,
                   children: [
                     FadeInImage.assetNetwork(
                       placeholder: 'asset/image/one piece.jpg',
-
                       image: imageUrl,
-
                       fit: BoxFit.cover,
                       width: double.infinity,
                       height: double.infinity,
-
                       fadeInDuration: const Duration(milliseconds: 300),
-
                       imageErrorBuilder: (context, error, stackTrace) {
                         return Container(
                           color: AppColors.backgroundColor,
-
                           child: const Center(
                             child: Icon(
                               Icons.broken_image,
@@ -79,17 +69,10 @@ class OnboardBackgroundSlider extends StatelessWidget {
 
                     AnimatedContainer(
                       duration: const Duration(milliseconds: 400),
-
                       decoration: BoxDecoration(
                         gradient: LinearGradient(
-                          colors: [
-                            Colors.transparent,
-
-                            movieColor.withValues(alpha: 0.95),
-                          ],
-
+                          colors: [AppColors.transparent, AppColors.black],
                           begin: Alignment.topCenter,
-
                           end: Alignment.bottomCenter,
                         ),
                       ),
@@ -102,14 +85,10 @@ class OnboardBackgroundSlider extends StatelessWidget {
                 height: double.infinity,
                 viewportFraction: 1,
                 autoPlay: true,
-
                 autoPlayInterval: const Duration(seconds: 2),
-
                 autoPlayAnimationDuration: const Duration(milliseconds: 800),
-
                 enlargeCenterPage: false,
                 enableInfiniteScroll: true,
-
                 scrollPhysics: const NeverScrollableScrollPhysics(),
               ),
             ),
