@@ -16,16 +16,13 @@ class OnboardingScreen extends StatelessWidget {
         builder: (context, controller, child) {
           if (controller.isLoading || controller.movies.isEmpty) {
             return const Center(
-              child: CircularProgressIndicator(color: AppColors.txtClr2,),
+              child: CircularProgressIndicator(color: AppColors.txtClr2),
             );
           }
-    
+
           return const Stack(
             fit: StackFit.expand,
-            children: [
-              OnboardBackgroundSlider(),
-              OnboardContent(),
-            ],
+            children: [OnboardBackgroundSlider(), OnboardContent()],
           );
         },
       ),
