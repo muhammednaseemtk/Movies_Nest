@@ -42,6 +42,18 @@ class MovieCard extends StatelessWidget {
                   width: 60,
                   height: 60,
                   fit: BoxFit.cover,
+                  errorBuilder: (context, error, stackTrace) {
+                    return Container(
+                      width: 60,
+                      height: 60,
+                      color: const Color(0xFF1A1A2E),
+                      child: const Icon(
+                        Icons.movie_creation_outlined,
+                        color: Colors.white24,
+                        size: 28,
+                      ),
+                    );
+                  },
                 ),
               ),
               SizedBox(width: 12),

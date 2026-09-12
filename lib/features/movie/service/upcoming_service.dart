@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:movie_nest/core/constants/url.dart';
 import 'package:movie_nest/core/network/api_client.dart';
 import 'package:movie_nest/features/movie/model/upcoming_movie.dart';
@@ -8,22 +7,11 @@ class UpcomingService {
   final ApiClient api = ApiClient();
 
   Future<List<UpcomingMovie>> fetchUpcomingMovies() async {
-    try {
-      final response = await api.get(Url.upcoming);
-
-      if (response != null &&
-          response.statusCode == 200 &&
-          response.data != null) {
-        final model = UpcomingMovieModel.fromJson(response.data);
-
-        return model.results ?? [];
-      }
-
-      return [];
-    } catch (e) {
-      debugPrint("Upcoming Error: $e");
-
-      return [];
+    final response = await api.get(Url.upcoming);
+    if (response.statusCode == 200 && response.data != null) {
+      final model = UpcomingMovieModel.fromJson(response.data);
+      return model.results ?? [];
     }
+    return [];
   }
 }

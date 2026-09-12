@@ -19,21 +19,6 @@ class TvShowScreen extends StatelessWidget {
     return Consumer<TvShowMovieController>(
       builder: (context, controller, _) {
 
-        if (!controller.isLoading && controller.tvShows.isEmpty) {
-          Future.microtask(() => controller.fetchTvShows());
-        }
-
-        if (controller.isLoading) {
-          return Scaffold(
-            backgroundColor: AppColors.backgroundColor,
-            body: Center(
-              child: CircularProgressIndicator(
-                color: AppColors.txtClr2,
-              ),
-            ),
-          );
-        }
-
         return Scaffold(
           backgroundColor: AppColors.backgroundColor,
           body: SingleChildScrollView(

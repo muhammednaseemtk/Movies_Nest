@@ -6,24 +6,36 @@ class TrendingMovieController extends ChangeNotifier {
   final TrendingService service = TrendingService();
 
   bool isLoading = false;
+  bool hasError = false;
+  String errorMessage = '';
+  bool _isFetching = false;
 
   List<TrendingMovie> trendingMovies = [];
   List<TrendingMovie> filteredTrendingMovies = [];
   List<TrendingMovie> watchList = [];
 
   Future<void> fetchTrendingMovies() async {
+    if (_isFetching) return;
+    _isFetching = true;
+
     try {
       isLoading = true;
+      hasError = false;
+      errorMessage = '';
       notifyListeners();
 
       final data = await service.fetchTrendingMovies();
       trendingMovies = data;
       filteredTrendingMovies = data;
+      hasError = false;
     } catch (e) {
-      debugPrint("Trending Error: $e");
+      debugPrint("[Trending] Error: $e");
+      hasError = true;
+      errorMessage = 'Failed to load trending movies.';
     }
 
     isLoading = false;
+    _isFetching = false;
     notifyListeners();
   }
 

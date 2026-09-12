@@ -31,6 +31,14 @@ class MovieHeader extends StatelessWidget {
               child: Image(
                 image: imageProvider.image,
                 fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    color: const Color(0xFF1A0A0A),
+                    child: const Center(
+                      child: Icon(Icons.movie, size: 80, color: AppColors.white24),
+                    ),
+                  );
+                },
               ),
             ),
 

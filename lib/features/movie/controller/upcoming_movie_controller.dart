@@ -6,21 +6,33 @@ class UpcomingMovieController extends ChangeNotifier {
   final UpcomingService service = UpcomingService();
 
   bool isLoading = false;
+  bool hasError = false;
+  String errorMessage = '';
+  bool _isFetching = false;
 
   List<UpcomingMovie> upcomingMovies = [];
   List<UpcomingMovie> watchList = [];
 
   Future<void> fetchUpcomingMovies() async {
+    if (_isFetching) return;
+    _isFetching = true;
+
     try {
       isLoading = true;
+      hasError = false;
+      errorMessage = '';
       notifyListeners();
 
       upcomingMovies = await service.fetchUpcomingMovies();
+      hasError = false;
     } catch (e) {
-      debugPrint("Upcoming Error: $e");
+      debugPrint("[Upcoming] Error: $e");
+      hasError = true;
+      errorMessage = 'Failed to load upcoming movies.';
     }
 
     isLoading = false;
+    _isFetching = false;
     notifyListeners();
   }
 

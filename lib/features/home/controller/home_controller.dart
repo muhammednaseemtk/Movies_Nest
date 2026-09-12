@@ -1,46 +1,70 @@
 import 'package:flutter/material.dart';
-import 'package:movie_nest/features/movie/model/trending_movie.dart';
-import 'package:movie_nest/features/movie/model/tvshow_movie.dart';
-import 'package:movie_nest/features/movie/model/upcoming_movie.dart';
-import 'package:movie_nest/features/movie/service/trending_service.dart';
-import 'package:movie_nest/features/movie/service/tvshow_service.dart';
-import 'package:movie_nest/features/movie/service/upcoming_service.dart';
-
+import 'package:movie_nest/features/movie/controller/trending_movie_controller.dart';
+import 'package:movie_nest/features/movie/controller/upcoming_movie_controller.dart';
+import 'package:movie_nest/features/movie/controller/tvshow_movie_controller.dart';
 
 class HomeController extends ChangeNotifier {
-  final TrendingService trendingService = TrendingService();
-  final UpcomingService upcomingService = UpcomingService();
-  final TvShowService tvService = TvShowService();
-
   bool isLoading = false;
   bool isFetched = false;
+  bool hasError = false;
+  String errorMessage = '';
+  bool _isFetching = false;
 
-  List<TrendingMovie> trendingMovies = [];
-  List<UpcomingMovie> upcomingMovies = [];
-  List<TvshowMovie> tvShowMovies = [];
-
-  Future<void> fetchHomeData() async {
-    if (isFetched) return;
+  Future<void> fetchHomeData({
+    required TrendingMovieController trendingCtrl,
+    required UpcomingMovieController upcomingCtrl,
+    required TvShowMovieController tvShowCtrl,
+  }) async {
+    if (isFetched || _isFetching) return;
+    _isFetching = true;
 
     try {
       isLoading = true;
+      hasError = false;
+      errorMessage = '';
       notifyListeners();
 
-      final trending = await trendingService.fetchTrendingMovies();
-      final upcoming = await upcomingService.fetchUpcomingMovies();
-      final tvShows = await tvService.fetchTvShows();
+      await trendingCtrl.fetchTrendingMovies();
+      await upcomingCtrl.fetchUpcomingMovies();
+      await tvShowCtrl.fetchTvShows();
 
-      trendingMovies = trending;
-      upcomingMovies = upcoming;
-      tvShowMovies = tvShows;
+      final anyError = trendingCtrl.hasError ||
+          upcomingCtrl.hasError ||
+          tvShowCtrl.hasError;
 
-      isFetched = true;
-
+      if (anyError && trendingCtrl.trendingMovies.isEmpty &&
+          upcomingCtrl.upcomingMovies.isEmpty &&
+          tvShowCtrl.tvShows.isEmpty) {
+        hasError = true;
+        errorMessage = 'Failed to load content. Please try again.';
+      } else {
+        isFetched = true;
+      }
     } catch (e) {
-      debugPrint("Home Error: $e");
+      debugPrint("[HomeController] Error: $e");
+      hasError = true;
+      errorMessage = 'An unexpected error occurred.';
     }
 
     isLoading = false;
+    _isFetching = false;
     notifyListeners();
+  }
+
+  void retry({
+    required TrendingMovieController trendingCtrl,
+    required UpcomingMovieController upcomingCtrl,
+    required TvShowMovieController tvShowCtrl,
+  }) {
+    isFetched = false;
+    _isFetching = false;
+    trendingCtrl.trendingMovies = [];
+    upcomingCtrl.upcomingMovies = [];
+    tvShowCtrl.tvShows = [];
+    fetchHomeData(
+      trendingCtrl: trendingCtrl,
+      upcomingCtrl: upcomingCtrl,
+      tvShowCtrl: tvShowCtrl,
+    );
   }
 }

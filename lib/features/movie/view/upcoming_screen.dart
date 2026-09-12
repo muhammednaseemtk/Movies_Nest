@@ -19,21 +19,6 @@ class UpcomingScreen extends StatelessWidget {
     return Consumer<UpcomingMovieController>(
       builder: (context, controller, _) {
 
-        if (!controller.isLoading && controller.upcomingMovies.isEmpty) {
-          Future.microtask(() => controller.fetchUpcomingMovies());
-        }
-
-        if (controller.isLoading) {
-          return Scaffold(
-            backgroundColor: AppColors.backgroundColor,
-            body: Center(
-              child: CircularProgressIndicator(
-                color: AppColors.txtClr2,
-              ),
-            ),
-          );
-        }
-
         return Scaffold(
           backgroundColor: AppColors.backgroundColor,
           body: SingleChildScrollView(

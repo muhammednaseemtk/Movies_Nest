@@ -19,21 +19,6 @@ class TrendingScreen extends StatelessWidget {
     return Consumer<TrendingMovieController>(
       builder: (context, controller, _) {
 
-        if (!controller.isLoading && controller.trendingMovies.isEmpty) {
-          Future.microtask(() => controller.fetchTrendingMovies());
-        }
-
-        if (controller.isLoading) {
-          return Scaffold(
-            backgroundColor: AppColors.backgroundColor,
-            body: Center(
-              child: CircularProgressIndicator(
-                color: AppColors.txtClr2,
-              ),
-            ),
-          );
-        }
-
         return Scaffold(
           backgroundColor: AppColors.backgroundColor,
           body: SingleChildScrollView(
